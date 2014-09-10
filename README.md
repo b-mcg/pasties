@@ -34,6 +34,8 @@ Example Usage
        // All parameters default to an empty string except for the one accepting the code to paste
        val pasteResult = APIInterface.makePaste(codeToPaste, "A test paste" //This is the name of the paste file, "10M" // This sets the expire time,
                                 "scala" // This sets the syntax highlighting, privateLevel = "1" // This sets the privacy level)
+
+       // Consult the pastebin API documentation for a full listing of supported syntax highlights
        
        // Note: The return type of every method is either a Success[String] or a Failure[Throwable]
 
