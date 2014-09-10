@@ -39,11 +39,9 @@ Example Usage
        // Consult the pastebin API documentation for a full listing of supported syntax highlights
        
        // Note: The return type of every method is either a Success[String] or a Failure[Throwable]
-       ```
 
     Delete A Paste:
         
-        ```
         // Let's create a function real quick in order to extract the result from our responses
         def extract(result: Try[String]): String = result match {
 
@@ -62,17 +60,13 @@ Example Usage
 
         val deleteResponse = APIInterface.deletePaste("my user key",
                                                         extract(myUserPaste).split('/').last // This grabs the paste key from the paste URL)
-        ```
 
     Create User Key:
         
-        ```
         val userKey = APIInterface.createAPIUserKey("your username", "your password")
-        ```
 
     List Pastes by You:
 
-        ``` 
         // This method simply returns pastes you've made
         // If a good response is returned it will be a string of xml, but as mentioned earlier it is either
         // a Success[String] or a Failure[Throwable]
@@ -82,25 +76,19 @@ Example Usage
         // The default limit is set to 50.  Minimum is 1 and maximum is 1000.
         // Example for getting back 30 results:
         val pastesByMe = APIInterface.listUserPastes(extract(userKey), "30")
-        ```
 
     List Trending Pastes:
 
-        ```
         // This method lists the top 18 trending pastes on pastebin
         val top18 = APIInterface.listTrendingPastes
-        ```
 
     Get User Info:
 
-        ```
         // This method returns information relating to the currently logged in user
         val myInfo = APIInterface.getUserInfo(extract(userKey)) // The only argument for this method is a valid user key
-        ```
 
     Get Raw Output of a paste:
 
-        ```
         // This method returns the raw output of a given paste
         // Let's get the raw output of the initial paste
         val rawResult = APIInterface.getRawOutput(extract(pasteResult).split('/').last // Grab the paste key at the end of the URL)
