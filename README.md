@@ -6,6 +6,18 @@ pasties is a simple interface to the pastebin API.
 It requires that you have a valid developer key which
 you can obtain just by creating a free account with them.
 
+Using pasties in Your SBT Project:
+---------------------------------
+---------------------------------
+
+    Place into your build.sbt file:
+
+```scala
+        resolvers += "bintray/bmcg" at "https://dl.bintray.com/bmcg/maven"
+
+        libraryDependencies += "org.bmcg" %% "pasties" % "0.0.1"
+```
+
 
 Example Usage
 --------------
@@ -35,7 +47,7 @@ Example Usage
 
 
        // Call the method responsible for sending the POST request to pastebin's API
-       // See the source file: PasteBinAPI.scala for a full listing of parameters and their significance or see the scaladoc file
+       // See the source file: PasteBinAPI.scala for a full listing of parameters and their significance
        // All parameters default to an empty string except for the one accepting the code to paste
        val pasteResult = APIInterface.makePaste(codeToPaste, "A test paste" //This is the name of the paste file, "10M" // This sets the expire time,
                                 "scala" // This sets the syntax highlighting, privateLevel = "1" // This sets the privacy level)
@@ -111,3 +123,4 @@ Example Usage
 ```
 
 That's it, those are all the actions that the pastebin API supports.
+To get more in depth coverage of the parameters of each method consult the source file: PasteBinAPI.scala
