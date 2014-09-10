@@ -10,24 +10,29 @@ you can obtain just by creating a free account with them.
 Example Usage
 --------------
 --------------
-    Create a new paste:
 
-        import pasties.PasteBinAPI
-        import scala.util.{Try, Success, Failure}
+    Create a New Paste:
 
-        // Instantiate the interface
-        val APIInterface = PasteBinAPI("Whatever your developer key is")
+    
+```scala
+    import pasties.PasteBinAPI
+    import scala.util.{Try, Success, Failure}
 
-        // Create some code to be pasted
-        val codeToPaste = """
-                            /**
-                              * This is a new paste!
-                              *
-                              */
+        
+    // Instantiate the interface
+    val APIInterface = PasteBinAPI("Whatever your developer key is")
+    
+    // Create some code to be pasted
+    val codeToPaste = """
+                        /**
+                          * This is a new paste!
+                          *
+                          */
 
-                            // Simple factorial function using the foldLeft method
-                            val fact = (n: BigInt) => (BigInt(1) to n).foldLeft (BigInt(1)) (_ * _)
-                          """.stripMargin
+                        // Simple factorial function using the foldLeft method
+                        val fact = (n: BigInt) => (BigInt(1) to n).foldLeft (BigInt(1)) (_ * _)
+                       """.stripMargin
+
 
        // Call the method responsible for sending the POST request to pastebin's API
        // See the source file: PasteBinAPI.scala for a full listing of parameters and their significance or see the scaladoc file
@@ -38,9 +43,11 @@ Example Usage
        // Consult the pastebin API documentation for a full listing of supported syntax highlights
        
        // Note: The return type of every method is either a Success[String] or a Failure[Throwable]
+```
 
     Delete A Paste:
-        
+
+```scala        
         // Let's create a function real quick in order to extract the result from our responses
         def extract(result: Try[String]): String = result match {
 
@@ -59,13 +66,17 @@ Example Usage
 
         val deleteResponse = APIInterface.deletePaste("my user key",
                                                         extract(myUserPaste).split('/').last // This grabs the paste key from the paste URL)
+```
 
     Create User Key:
-        
+    
+```scala
         val userKey = APIInterface.createAPIUserKey("your username", "your password")
+```
 
     List Pastes by You:
 
+```scala
         // This method simply returns pastes you've made
         // If a good response is returned it will be a string of xml, but as mentioned earlier it is either
         // a Success[String] or a Failure[Throwable]
@@ -75,22 +86,28 @@ Example Usage
         // The default limit is set to 50.  Minimum is 1 and maximum is 1000.
         // Example for getting back 30 results:
         val pastesByMe = APIInterface.listUserPastes(extract(userKey), "30")
+```
 
     List Trending Pastes:
 
+```scala
         // This method lists the top 18 trending pastes on pastebin
         val top18 = APIInterface.listTrendingPastes
+```
 
     Get User Info:
 
+```scala
         // This method returns information relating to the currently logged in user
         val myInfo = APIInterface.getUserInfo(extract(userKey)) // The only argument for this method is a valid user key
+```
 
     Get Raw Output of a paste:
 
+```scala
         // This method returns the raw output of a given paste
         // Let's get the raw output of the initial paste
         val rawResult = APIInterface.getRawOutput(extract(pasteResult).split('/').last // Grab the paste key at the end of the URL)
-
+```
 
 That's it, those are all the actions that the pastebin API supports.
