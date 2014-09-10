@@ -12,7 +12,6 @@ Example Usage
 --------------
     Create a new paste:
 
-        ```scala
         import pasties.PasteBinAPI
         import scala.util.{Try, Success, Failure}
 
@@ -92,7 +91,6 @@ Example Usage
         // This method returns the raw output of a given paste
         // Let's get the raw output of the initial paste
         val rawResult = APIInterface.getRawOutput(extract(pasteResult).split('/').last // Grab the paste key at the end of the URL)
-        ```
 
 
 That's it, those are all the actions that the pastebin API supports.
